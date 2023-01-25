@@ -32,7 +32,22 @@ const containers = [{
   price: 4
 }]
 
-function drawStore(){}
+function drawStore(){
+  let storeElem = document.getElementById("store")
+  let template = ``
+  iceCream.forEach(i => template +=`
+  <div class="col-2">
+        <div class="card">
+          <div class="card-body">
+            <img src="${i.image}" alt="">
+            <h3>${i.name}</h3>
+            <h6>price: ${i.price}</h6>
+          </div>
+        </div>
+      </div>
+  `)
+  storeElem.innerHTML = template
+}
 
 function drawCart(){}
 

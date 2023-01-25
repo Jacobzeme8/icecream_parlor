@@ -31,3 +31,13 @@ const containers = [{
   image: 'http://images.wbmason.com/350/L_JOY66050.jpg',
   price: 4
 }]
+
+function drawStore(){}
+
+function drawCart(){}
+
+function addItem(){}
+
+function totalPrice(){}
+
+function purchase(){}

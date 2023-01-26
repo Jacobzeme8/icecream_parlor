@@ -32,6 +32,8 @@ const containers = [{
   price: 4
 }]
 
+let cart = []
+
 function drawStore(){
   let storeElem = document.getElementById("store")
   let template = ``
@@ -42,17 +44,66 @@ function drawStore(){
             <img src="${i.image}" alt="">
             <h3>${i.name}</h3>
             <h6>price: ${i.price}</h6>
+            <button onclick="addItem('${i.name}', iceCream)">Purchase</button>
           </div>
         </div>
       </div>
   `)
+
+  toppings.forEach(t => template +=`
+  <div class="col-2">
+        <div class="card">
+          <div class="card-body">
+            <img src="${t.image}" alt="">
+            <h3>${t.name}</h3>
+            <h6>price: ${t.price}</h6>
+            <button onclick="addItem('${t.name}', toppings)">Purchase</button>
+          </div>
+        </div>
+      </div>
+  `)
+
+  containers.forEach(c => template +=`
+  <div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <img src="${c.image}" alt="">
+              <h3>${c.name}</h3>
+              <h6>price: ${c.price}</h6>
+              <button onclick="addItem('${c.name}', containers)">Purchase</button>
+            </div>
+          </div>
+        </div>
+`)
+
   storeElem.innerHTML = template
 }
 
-function drawCart(){}
+drawStore()
 
-function addItem(){}
+function drawCart(){
+  let cartElem = document.getElementById("cart")
+  let cartTemplate = ` `
+  cart.forEach(i => cartTemplate +=`
+  <h5 class="col-4">${i.name}</h5>
+  `)
+  cartElem.innerHTML = cartTemplate
+}
 
-function totalPrice(){}
+function addItem(name, type){
+  let itemToAdd = type.find(t => t.name == name)
+  cart.push(itemToAdd)
+  drawCart()
+  totalPrice()
+}
 
-function purchase(){}
+function totalPrice(){
+  let total = 0;
+  cart.forEach(i => total +=i.price)
+  let template = `Total Price: ${total} `
+  let priceElem = document.getElementById("total-price")
+  priceElem.innerText = template
+  console.log(total);
+}
+
+function checkout(){}
